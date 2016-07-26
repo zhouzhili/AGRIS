@@ -2,14 +2,124 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Get started with SceneView - Create a 3D map</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>农业估产信息系统</title>
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <!--bootstrap样式引用-->
+    <link rel="stylesheet" href="components/bootstrap/css/bootstrap.css">
+    <script src="components/jquery/jquery.js"></script>
+    <script src="components/bootstrap/js/bootstrap.js"></script>
+
+    <!--自定义模块配置文件-->
+    <script src="javascripts/dojoConfig.js"></script>
+    <!--arcgis_api引用-->
+    <link rel="stylesheet" href="components/arcgis_js_api/library/4.0/4.0/esri/css/main.css">
+    <script src="components/arcgis_js_api/library/4.0/4.0/init.js"></script>
+
+    <!--&lt;!&ndash;自己的样式和js&ndash;&gt;-->
     <link rel="stylesheet" href="stylesheets/style.css">
-    <link rel="stylesheet" href="javascripts/arcgis_js_api/library/4.0/4.0/esri/css/main.css">
-    <script src="javascripts/arcgis_js_api/library/4.0/4.0/init.js"></script>
     <script src="javascripts/main.js"></script>
 </head>
 <body>
-<div id="viewDiv"></div>
+<nav class="navbar navbar-default navbar-fixed-top bluenavbg">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span class="project">农业估产信息系统</span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#"><span class="whitenavFont">首页</span></a></li>
+                <li><a href="#"><span class="whitenavFont">查询</span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="mainContainer clearfix">
+    <div class="mapContainer">
+        <div id="viewDiv"></div>
+    </div>
+    <div class="layerContainer">
+        <div>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                               aria-expanded="true" aria-controls="collapseOne">
+                                2013年夏季数据
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    水稻种植面积
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    花生种植面积
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    油菜种植面积
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                               aria-expanded="true" aria-controls="collapseTwo">
+                                2014年夏季数据
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    水稻种植面积
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    花生种植面积
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    油菜种植面积
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

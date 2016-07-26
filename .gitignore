@@ -217,6 +217,7 @@ pip-log.txt
 ## NodeJS
 #############
 arcgis_js_api/
+.svn/
 node_modules/
 *compiled.js.map
 *compiled.js

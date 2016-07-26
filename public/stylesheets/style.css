@@ -1,6 +1,39 @@
-html, body, #viewDiv {
+html,body,#viewDiv,.mainContainer {
   padding: 0;
   margin: 0;
-  height: 100%;
   width: 100%;
+    height: 100%;
+}
+.mainContainer{
+    padding-top: 50px;
+}
+.bluenavbg{
+    background-color: rgb(1,156,222);
+    border: 0;
+}
+.whitenavFont{
+    color: #fff !important;
+    font-size: 16px;
+}
+.project{
+    color: #fff;
+    font-size: 24px;
+}
+.layerContainer{
+    padding:0 0 0 1px;
+    margin: 0;
+    height: 100%;
+    width: 15%;
+    float: left;
+    overflow-x: auto;
+}
+.mapContainer{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 85%;
+    float: left;
+}
+.containerBorder{
+    border: #ddd solid 1px;
 }

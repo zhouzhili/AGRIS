@@ -3,8 +3,10 @@
  */
 require([
     "controller/mapViewControl",
+    "controller/layerShowControl",
     "dojo/domReady!"
-], function (mapViewControl) {
+], function (mapViewControl, layerShowControl) {
     //地图视图初始化
-    mapViewControl.viewInit('viewDiv');
+    var sceneView = mapViewControl.viewInit('viewDiv');
+    layerShowControl.showControlInit(sceneView.map);
 });

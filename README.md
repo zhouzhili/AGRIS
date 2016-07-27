@@ -4,4 +4,7 @@
     下载后解压，将arcgis_js_api文件夹及其子文件放到public/components根目录下，打开arcgis_js_api\library\4.0\4.0\init.js，
     把[HOSTNAME_AND_PATH_TO_JSAPI]替换为localhost:3000/components/arcgis_js_api/library/4.0/4.0/。
     打开arcgis_js_api\library\4.0\4.0\dojo\dojo.js，把[HOSTNAME_AND_PATH_TO_JSAPI]替换为localhost:3000/components/arcgis_js_api/library/4.0/4.0/。即可完成配置
+    
+###工作进展
+2016-7-27：完成图层列表栏图层的添加与删除，实现底图视图控制和图层控制模块的编写，分模块编写功能非常有用，不过有些模块需要访问视图中的layer或者map，这个后面需要考虑在不同模块间这些怎么管理。
   

@@ -6,31 +6,23 @@ define([
     "esri/Map",
     "esri/views/SceneView",
     "esri/Basemap",
-    "esri/layers/TileLayer",
+    "models/layerCollection",
     "esri/widgets/Home",
     "esri/widgets/BasemapToggle"
-], function (Map, SceneView, Basemap, TileLayer, Home, BasemapToggle) {
+], function (Map, SceneView, Basemap, layerCollection, Home, BasemapToggle) {
     return {
         //参数为vie容器的DIV的id
       viewInit: function (viewContainer) {
           //基础矢量底图
           var vectorBasemap = new Basemap({
-              baseLayers: [
-                  new TileLayer({
-                      url: "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetColor/MapServer"
-                  })
-              ],
-              title: "default vector Basemap",
+              baseLayers: [layerCollection.baseVectorLayer],
+              title: "矢量地图",
               id: "defaultVectorBasemap"
           });
           //基础栅格底图
           var imageBasemap = new Basemap({
-              baseLayers: [
-                  new TileLayer({
-                      url: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"
-                  })
-              ],
-              title: "default image Basemap",
+              baseLayers: [layerCollection.baseImageLayer],
+              title: "影像地图",
               id: "defaultImageBasemap"
           });
           //地图默认加载矢量底图
@@ -42,13 +34,23 @@ define([
           var view = new SceneView({
               container: viewContainer,
               map: map,
-              center: [113.22, 29.96],
+              center: [113.32, 29.84],
               zoom: 3
           });
+
+          //view.then(function () {
+          //   view.goTo({
+          //       center:[113.32,29.84],
+          //       zoom:11
+          //   })
+          //}).otherwise(function (err) {
+          //    console.error('sceneview 错误,WebGL不可用:',err);
+          //});
 
           //底图切换
           var basemaptoggle = new BasemapToggle({
               view: view,
+              titleVisible:true,
               nextBasemap:imageBasemap
           });
           basemaptoggle.startup();
@@ -60,6 +62,7 @@ define([
           }, "homediv");
           homeBtn.startup();
           view.ui.add(homeBtn, "top-left");
+          return view;
       }
     };
 });

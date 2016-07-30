@@ -10,13 +10,18 @@ define([
 ],function(layerCollection,query,dom){
     return{
         showControlInit: function (map) {
+            //图层列表点击事件
+            query('#layerListHead').on('click', function () {
+                 query('#layerListBody').toggleClass('panelHide');
+            });
             //checkbox的点击事件
             function checkboxClick(checkbox){
                 var value=checkbox.value;
                 var layer=layerCollection[value];
-                //如果选中,则添加图层;否则,移除图层
+                //如果选中,并且选择的图层不在当前map中，添加进map,
+                // 否则,移除图层
                 if(checkbox.checked){
-                    if(layer){
+                    if(!map.findLayerById(layer.id)){
                         map.add(layer);
                     }
                 }else {

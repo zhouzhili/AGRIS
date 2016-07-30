@@ -23,17 +23,58 @@ html,body,#viewDiv,.mainContainer {
     padding:0 0 0 1px;
     margin: 0;
     height: 100%;
-    width: 15%;
     float: left;
-    overflow-x: auto;
+    overflow-y: auto;
 }
 .mapContainer{
     padding: 0;
     margin: 0;
     height: 100%;
-    width: 85%;
     float: left;
+}
+/*屏幕尺寸小于1220px*/
+@media screen and (max-width: 1220px){
+    .mapContainer{
+        width: 65%;
+    }
+    .layerContainer{
+        width: 35%;
+    }
+}
+/*屏幕尺寸大于1220px*/
+@media screen and (min-width:1220px ) {
+    .mapContainer{
+        width: 70%;
+    }
+    .layerContainer{
+        width: 30%;
+    }
+}
+/*屏幕尺寸大于1700px*/
+@media screen and (min-width:1700px ){
+    .mapContainer{
+        width: 80%;
+    }
+    .layerContainer{
+        width: 20%;
+    }
 }
 .containerBorder{
     border: #ddd solid 1px;
+}
+.panel-list{
+    padding: 4px;
+}
+.searchDiv{
+    height:34px ;
+}
+.searchImg{
+    margin-top: 4px;
+}
+.toolboxImg{
+    min-height: 16px;
+    width: auto;
+}
+.panelHide{
+    display: none;
 }

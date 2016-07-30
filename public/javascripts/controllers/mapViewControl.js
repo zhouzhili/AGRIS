@@ -35,17 +35,10 @@ define([
               container: viewContainer,
               map: map,
               center: [113.32, 29.84],
-              zoom: 3
+              zoom: 3,
+              tile:0,
+              heading:0
           });
-
-          //view.then(function () {
-          //   view.goTo({
-          //       center:[113.32,29.84],
-          //       zoom:11
-          //   })
-          //}).otherwise(function (err) {
-          //    console.error('sceneview 错误,WebGL不可用:',err);
-          //});
 
           //底图切换
           var basemaptoggle = new BasemapToggle({

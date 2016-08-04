@@ -6,7 +6,7 @@ var dojoConfig = {
     async: true,
     packages: [
         {
-            name: "controller",
+            name: "controllers",
             location: location.pathname.replace(/\/[^/]*$/, '') + '/javascripts/controllers'
         },
         {

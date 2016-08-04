@@ -22,6 +22,7 @@
     <script src="javascripts/main.js"></script>
 </head>
 <body>
+<ul class="errorToast" id="errorList"></ul>
 <nav class="navbar navbar-default navbar-fixed-top bluenavbg">
     <div class="container">
         <div class="navbar-header">
@@ -53,19 +54,14 @@
                 <div class="panel-heading">
                     <a role="button" id="toolboxHead">
                         <h4>
-                            <strong >工具箱</strong>
+                            <strong>工具箱</strong>
                         </h4>
                     </a>
                 </div>
                 <div class="panel-body" id="toolboxBody">
-                    <input type="image" src="images/3DTo2D.png" alt="3D2D视图转换" class="col-md-2 toolboxImg"
-                           title="3D2D视图转换" id="3DTo2DTool">
-                    <input type="image" src="images/SelectionTool.png" alt="按矩形选择要素" class="col-md-2 toolboxImg"
-                           title="按矩形选择要素" id="selectionTool">
-                    <input type="image" src="images/IdentifyTool.png" alt="查看属性" class="col-md-2 toolboxImg"
-                           title="查看属性" id="identifyTool">
-                    <input type="image" src="images/statistics.png" alt="统计图表" class="col-md-2 toolboxImg"
-                           title="统计图表" id="statisticsTool">
+                    <button type="button" class="btn btn-primary " id="3DTo2DTool">视图转换</button>
+                    <button type="button" class="btn btn-primary " id="selectionTool">清除要素</button>
+                    <button type="button" class="btn btn-primary " id="identifyBtn">查看属性</button>
                 </div>
             </div>
         </div>
@@ -84,25 +80,26 @@
                                 <img src="images/geometry.png" class="searchImg">
                             </div>
                             <div class="col-sm-5">
-                                <select class="form-control">
-                                    <option value="">地级市州</option>
-                                    <option value="4201" code="420100">武汉市</option>
-                                    <option value="4202" code="420200">黄石市</option>
-                                    <option value="4203" code="420300">十堰市</option>
-                                    <option value="4205" code="420500">宜昌市</option>
-                                    <option value="4206" code="420600">襄樊市</option>
-                                    <option value="4207" code="420700">鄂州市</option>
-                                    <option value="4208" code="420800">荆门市</option>
-                                    <option value="4209" code="420900">孝感市</option>
-                                    <option value="4210" code="421000">荆州市</option>
-                                    <option value="4211" code="421100">黄冈市</option>
-                                    <option value="4212" code="421200">咸宁市</option>
-                                    <option value="4213" code="421300">随州市</option>
-                                    <option value="4228" code="422800">恩施土家族苗族自治州</option>
+                                <select class="form-control" id="city-list">
+                                    <option value="地级市州">地级市州</option>
+                                    <option value="武汉市">武汉市</option>
+                                    <option value="黄石市">黄石市</option>
+                                    <option value="十堰市">十堰市</option>
+                                    <option value="宜昌市">宜昌市</option>
+                                    <option value="襄阳市">襄阳市</option>
+                                    <option value="鄂州市">鄂州市</option>
+                                    <option value="荆门市">荆门市</option>
+                                    <option value="孝感市">孝感市</option>
+                                    <option value="荆州市">荆州市</option>
+                                    <option value="黄冈市">黄冈市</option>
+                                    <option value="咸宁市">咸宁市</option>
+                                    <option value="随州市">随州市</option>
+                                    <option value="恩施土家族苗族自治州">恩施土家族苗族自治州</option>
+                                    <option>省直辖</option>
                                 </select>
                             </div>
                             <div class="col-sm-5">
-                                <select class="form-control">
+                                <select class="form-control" id="country-list">
                                     <option>区县旗</option>
                                 </select>
                             </div>
@@ -124,7 +121,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-5 col-sm-8">
-                                <button type="button" class="btn btn-primary">查询</button>
+                                <button type="button" class="btn btn-primary" id="search">查询</button>
                             </div>
                         </div>
                     </form>
@@ -146,7 +143,7 @@
                                 <h5 class="panel-title">
                                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                                        aria-expanded="true" aria-controls="collapseOne">
-                                        2013年夏季数据
+                                        2014年冬小麦
                                     </a>
                                 </h5>
                             </div>
@@ -155,8 +152,8 @@
                                 <div class="panel-body">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="hh19910719">
-                                            水稻种植面积
+                                            <input type="checkbox" value="pp429004">
+                                            仙桃市冬小麦
                                         </label>
                                     </div>
                                     <div class="checkbox">

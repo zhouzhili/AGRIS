@@ -4,8 +4,9 @@
 //所用需要用到的图层的集合
 define([
     "esri/layers/TileLayer",
+    "esri/layers/MapImageLayer",
     "esri/layers/FeatureLayer"
-], function (TileLayer,FeatureLayer) {
+], function (TileLayer,FeatureLayer,MapImageLayer) {
     return {
         'baseVectorLayer': new TileLayer({
             url: "http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetColor/MapServer",
@@ -47,6 +48,21 @@ define([
             layerId:2,
             id:'hh_water_20120801',
             title:"洪湖2012年8月1日水质数据"
+        }),
+        'pp429004':new FeatureLayer({
+            url:"http://202.114.148.206:6080/arcgis/rest/services/sysData/DM2014prj/MapServer",
+            layerId:0,
+            title:"2014年仙桃市冬小麦"
+        }),
+        'countryBoundary':new FeatureLayer({
+            url:"http://202.114.148.206:6080/arcgis/rest/services/sysData/boundary/MapServer",
+            layerId:0,
+            title:"县级行政区"
+        }),
+        'cityBoundary':new FeatureLayer({
+            url:"http://202.114.148.206:6080/arcgis/rest/services/sysData/boundary/MapServer",
+            layerId:1,
+            title:"地级市行政区"
         })
     };
 });

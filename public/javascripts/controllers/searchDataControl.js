@@ -10,8 +10,9 @@ define([
     "models/layerCollection",
     "esri/symbols/SimpleFillSymbol",
     'controllers/errorMessageControl',
-    'dojo/domReady!'
-], function (dom, on, domClass, QueryTask, Query, layerCollection, SimpleFillSymbol, errorMessageControl) {
+    'controllers/statisticsControl'
+], function (dom, on, domClass, QueryTask, Query, layerCollection, SimpleFillSymbol,
+             errorMessageControl,statisticsControl) {
 
     //地级市与县级市对应数据
     var countries = {
@@ -24,7 +25,7 @@ define([
         "荆门市": ["东宝区", "掇刀区", "京山县", "沙洋县", "钟祥市"],
         "孝感市": ["孝南区", "孝昌县", "大悟县", "云梦县", "应城市", "安陆市", "汉川市"],
         "荆州市": ["沙市区", "荆州区", "公安县", "监利县", "江陵县", "石首市", "洪湖市", "松滋市"],
-        "黄冈市": ["红安县", "罗田县", "英山县", "浠水县", "蕲春县", "黄梅县", "麻城市", "武穴市"],
+        "黄冈市": ["黄州区", "团风县", "红安县", "罗田县", "英山县", "浠水县", "蕲春县", "黄梅县", "麻城市", "武穴市"],
         "咸宁市": ["咸安区", "嘉鱼县", "通城县", "崇阳县", "通山县", "赤壁市"],
         "随州市": ["曾都区", "随县", "广水市"],
         "恩施土家族苗族自治州": ["恩施市", "利川市", "建始县", "巴东县", "宣恩县", "咸丰县", "来凤县", "鹤峰县"],
@@ -66,13 +67,12 @@ define([
             featureQuery.outSpatialReference = sceneView.spatialReference;
             featureQuery.outFields = ["*"];
             featureQuery.returnGeometry = true;
-
             queryTask.execute(featureQuery).then(function (result) {
                 var simpleFillSymbol = new SimpleFillSymbol({
-                    color: [245, 122, 122, 0.3],
+                    color: [0, 0, 0, 0],
                     style: 'solid',
                     outline: {
-                        color: 'green',
+                        color: 'blue',
                         width: 1.5
                     }
                 });
@@ -83,33 +83,58 @@ define([
 
     //将查询到的结果(graphic[]集合)根据给定的符号，加载到视图中
     function addQueryResultToView(sceneView, results, symbol) {
-        //清除之前的graphics
-        sceneView.graphics.items = null;
         var features = results.features;
-        //给每个要素添加符号
-        var graphics = features.map(function (feature) {
-            feature.symbol = symbol;
-            return feature;
-        });
+        if (features.length > 0) {
+            //给每个要素添加符号
+            var graphics = features.map(function (feature) {
+                feature.symbol = symbol;
+                return feature;
+            });
 
-        //添加新选择的,并将试图转到新的视图
-        sceneView.graphics.addMany(graphics);
-        sceneView.goTo({
-            target: graphics
-        });
+            //添加新选择的,并将试图转到新的视图
+            sceneView.graphics.addMany(graphics);
+            sceneView.goTo({
+                target: graphics
+            });
+        }
+    }
+
+    //获取选择项，返回选项语句
+    function getSelectClause() {
+        //选择的市和县
+        var cityList = dom.byId('city-list');
+        var countryList = dom.byId('country-list');
+        var selectCity = cityList.options[cityList.selectedIndex].value;
+        var selectCountry = countryList.options[countryList.selectedIndex].value;
+        //语句
+        var clause = "";
+        if (selectCountry != "区县旗") {
+            //区县旗查询
+            clause = "NAME='" + selectCountry + "'";
+        } else if (selectCity != "地级市州") {
+            //市州查询
+            clause = "CityName='" + selectCity + "'";
+        }
+        return clause;
     }
 
     return {
         init: function (sceneView) {
+            //DM2014All
+            var mapImageLayer = layerCollection['DM2014'];
             //查询列表展开和折叠
             on(dom.byId('searchDataHead'), 'click', function () {
                 var searchDataBody = dom.byId('searchDataBody');
                 domClass.toggle('searchDataBody', 'panelHide');
             });
+
             //地级市城市选择列表选项改变事件
             on(dom.byId('city-list'), 'change', function (event) {
                 //获取选项
                 var selectedCity = event.target.options[event.target.selectedIndex].value;
+                //清除之前的边界
+                sceneView.map.remove(mapImageLayer);
+                sceneView.graphics.items = null;
                 //在视图中显示并转到选择的视图
                 goToSelectedCity(sceneView, selectedCity, 'city');
                 //更新县级选项
@@ -119,45 +144,72 @@ define([
             //县级城市选择列表选项改变事件
             on(dom.byId('country-list'), 'change', function (event) {
                 var selectedCountry = event.target.options[event.target.selectedIndex].value;
+                //清除之前的边界
+                sceneView.map.remove(mapImageLayer);
+                sceneView.graphics.items = null;
                 goToSelectedCity(sceneView, selectedCountry, 'country');
+            });
+
+            //重置选项按钮
+            on(dom.byId('reset'), 'click', function () {
+                var cityList = dom.byId('city-list');
+                var countryList = dom.byId('country-list');
+                cityList.selectedIndex = 0;
+                countryList.innerHTML = "<option>区县旗</option>";
+                sceneView.map.remove(mapImageLayer);
+                sceneView.graphics.items = null;
             });
 
             //查询按钮
             on(dom.byId('search'), 'click', function () {
-               //查询图层和条件
-                var featureLayer=layerCollection['pp429004'];
-                var query = new Query();
-                query.outFields = ['*'];
-                query.outSpatialReference = sceneView.spatialReference;
-                query.returnGeometry = true;
-                //选择的市和县
-                var cityList = dom.byId('city-list');
-                var countryList = dom.byId('country-list');
-                var selectCity = cityList.options[cityList.selectedIndex].value;
-                var selectCountry = countryList.options[countryList.selectedIndex].value;
-                //query.geometry
-                if (selectCity!="地级市州" || selectCountry!="区县旗") {
-                    query.geometry = sceneView.graphics.getItemAt(0).geometry;
-                } else {
-                    return errorMessageControl.showError("请先选择范围");
+                var clause=getSelectClause();
+                if(clause!=""){
+                    //移除上一次查询结果
+                    sceneView.map.remove(mapImageLayer);
+                    //定义查询
+                    mapImageLayer.sublayers = [{
+                        id: 0,
+                        visible: true,
+                        definitionExpression: clause
+                    }];
+                    sceneView.map.add(mapImageLayer);
+                }else {
+                    errorMessageControl.showError("请先选择行政区范围");
                 }
 
-                //queryTask
-                var queryTask=new QueryTask({
-                    url:featureLayer.url+"/"+featureLayer.layerId
-                });
-                //执行查询
-                queryTask.execute(query).then(function (results) {
-                    var symbol = new SimpleFillSymbol({
-                        color: [122, 0, 0, 1],
-                        style: 'solid',
-                        outline: {
-                            color: 'green',
-                            width: 1
-                        }
+            });
+
+            //统计图表按钮
+            on(dom.byId('statistics'), 'click', function () {
+                var clause=getSelectClause();
+                if(clause!=""){
+                    var queryTask=new QueryTask({
+                        url:mapImageLayer.url+"/0"
                     });
-                    addQueryResultToView(sceneView,results,symbol);
-                });
+                    var query=new Query();
+                    query.outFields=["NAME","Shape.STArea()"];
+                    query.returnGeometry=false;
+                    query.where=clause;
+                    queryTask.execute(query).then(function (results) {
+                        var graphics=results.features;
+                        var attributes=graphics.map(function (item) {
+                            return item.attributes;
+                        });
+
+                        var name=attributes.map(function (item) {
+                           return item['NAME'];
+                        });
+                        var area=attributes.map(function (item) {
+                            return item['Shape.STArea()']/1000000;
+                        });
+
+
+                        //展示图表
+                        statisticsControl.showChart(name,area);
+                    });
+                }else {
+                    errorMessageControl.showError("请先选择行政区范围");
+                }
             });
         }
     }

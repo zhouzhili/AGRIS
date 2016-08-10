@@ -23,6 +23,12 @@
 </head>
 <body>
 <ul class="errorToast" id="errorList"></ul>
+<div class="chartContainer" id="chartContainer">
+    <a role="button" class="chart-remove-con" id="removeChart">
+        <span class="glyphicon glyphicon-remove chart-remove"></span>
+    </a>
+    <div id="chartDiv" class="chart"></div>
+</div>
 <nav class="navbar navbar-default navbar-fixed-top bluenavbg">
     <div class="container">
         <div class="navbar-header">
@@ -120,8 +126,14 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-5 col-sm-8">
+                            <div class="col-sm-offset-1 col-sm-3">
+                                <button type="button" class="btn btn-primary" id="reset">重置</button>
+                            </div>
+                            <div class="col-sm-3">
                                 <button type="button" class="btn btn-primary" id="search">查询</button>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-primary" id="statistics">统计图表</button>
                             </div>
                         </div>
                     </form>
@@ -158,7 +170,7 @@
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" value="hh19900902">
+                                            <input type="checkbox" value="DM2014">
                                             花生种植面积
                                         </label>
                                     </div>

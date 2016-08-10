@@ -12,6 +12,10 @@ var dojoConfig = {
         {
             name:"models",
             location:location.pathname.replace(/\/[^/]*$/, '') + '/javascripts/models'
+        },
+        {
+            name:"Chart",
+            location:location.pathname.replace(/\/[^/]*$/, '') + '/components/Chart'
         }
     ]
 };

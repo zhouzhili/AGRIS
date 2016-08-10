@@ -1,84 +1,103 @@
-html,body,#viewDiv,.mainContainer {
-  padding: 0;
-  margin: 0;
-  width: 100%;
+html, body, #viewDiv, .mainContainer {
+    padding: 0;
+    margin: 0;
+    width: 100%;
     height: 100%;
 }
-.mainContainer{
+
+.mainContainer {
     padding-top: 50px;
 }
-.bluenavbg{
-    background-color: rgb(1,156,222);
+
+.bluenavbg {
+    background-color: rgb(1, 156, 222);
     border: 0;
 }
-.whitenavFont{
+
+.whitenavFont {
     color: #fff !important;
     font-size: 16px;
 }
-.project{
+
+.project {
     color: #fff;
     font-size: 24px;
 }
-.layerContainer{
-    padding:0 0 0 1px;
+
+.layerContainer {
+    padding: 0 0 0 1px;
     margin: 0;
     height: 100%;
     float: left;
     overflow-y: auto;
 }
-.mapContainer{
+
+.mapContainer {
     padding: 0;
     margin: 0;
     height: 100%;
     float: left;
 }
+
 /*屏幕尺寸小于1220px*/
-@media screen and (max-width: 1220px){
-    .mapContainer{
+@media screen and (max-width: 1220px) {
+    .mapContainer {
         width: 65%;
     }
-    .layerContainer{
+
+    .layerContainer {
         width: 35%;
     }
 }
+
 /*屏幕尺寸大于1220px*/
-@media screen and (min-width:1220px ) {
-    .mapContainer{
+@media screen and (min-width: 1220px ) {
+    .mapContainer {
         width: 70%;
     }
-    .layerContainer{
+
+    .layerContainer {
         width: 30%;
     }
 }
+
 /*屏幕尺寸大于1700px*/
-@media screen and (min-width:1700px ){
-    .mapContainer{
+@media screen and (min-width: 1700px ) {
+    .mapContainer {
         width: 80%;
     }
-    .layerContainer{
+
+    .layerContainer {
         width: 20%;
     }
 }
-.containerBorder{
+
+.containerBorder {
     border: #ddd solid 1px;
 }
-.panel-list{
+
+.panel-list {
     padding: 4px;
 }
-.searchDiv{
-    height:34px ;
+
+.searchDiv {
+    height: 34px;
 }
-.searchImg{
+
+.searchImg {
     margin-top: 4px;
 }
-.toolboxImg{
+
+.toolboxImg {
     min-height: 16px;
     width: auto;
 }
-.panelHide{
+
+.panelHide {
     display: none;
 }
-.errorToast{
+
+.errorToast {
     position: fixed;
     z-index: 10000;
     margin: 0;
@@ -88,7 +107,8 @@ html,body,#viewDiv,.mainContainer {
     bottom: 20px;
     left: 40px;
 }
-.errorToast li{
+
+.errorToast li {
     border-radius: 5px;
     font-size: 15px;
     padding: 5px;
@@ -98,4 +118,32 @@ html,body,#viewDiv,.mainContainer {
     height: 30px;
     line-height: 25px;
     font-weight: 500;
+}
+
+.chartContainer {
+    position: absolute;
+    z-index: 100000;
+    margin: 0;
+    padding: 2px;
+    bottom: 20px;
+    left: 40px;
+    width: 35%;
+    height: 40%;
+    background-color: white;
+    display: none;
+}
+
+.chart {
+    position: relative;
+    height: 90%;
+    width: 100%;
+}
+
+.chart-remove-con {
+    text-align: right;
+}
+
+.chart-remove {
+    display: block;
+    color: red;
 }

@@ -24,7 +24,7 @@ define([
                 //如果选中,并且选择的图层不在当前map中，添加进map,
                 // 否则,移除图层
                 if (checkbox.checked) {
-                    if (!map.findLayerById(layer.id)) {
+                    if (layer) {
                         map.add(layer);
                         //切换视图到图层范围,图层坐标系需要为web墨卡托,或者WGS84
                         layer.then(function () {

@@ -8,6 +8,7 @@ define([
     'widgets/Map/Map',
     'widgets/SearchData/SearchData'
 ], function (declare, lang,Map, SearchData) {
+    window.Global={};
     return declare(null,{
 
         /*
@@ -19,10 +20,9 @@ define([
             map.placeAt(dojo.body());
             map.startup();
             //地图视图
-            this.view=map.getView();
-
+            window.Global.view=map.getView();
             //查询面板
-            var searchDataPanel=new SearchData({view:this.view});
+            var searchDataPanel=new SearchData();
             searchDataPanel.placeAt(dojo.body());
         }
     });

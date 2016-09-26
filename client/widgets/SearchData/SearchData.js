@@ -16,9 +16,7 @@ define([
 ], function (on, dom, domClass, lang, declare, _baseWidget,layers,QueryTask,Query,SimpleFillSymbol, template) {
     return declare([_baseWidget], {
         templateString: template,
-
         constructor: function (args) {
-            this.view=args.view;
             this.countries = {
                 "武汉市": ["江岸区", "江汉区", "硚口区", "汉阳区", "武昌区", "青山区", "洪山区", "东西湖区", "蔡甸区", "江夏区", "黄陂区", "新洲区"],
                 "黄石市": ["黄石港区", "西塞山区", "下陆区", "铁山区", "阳新县", "大冶市"],
@@ -53,11 +51,12 @@ define([
         },
 
         /*
-         添加事件
+         初始化事件
          */
         addEvent: function () {
             on(this.searchPanelHead, 'click', lang.hitch(this, this.searchPanelHeadClick));
             on(this.cityList,'change',lang.hitch(this,this.cityListChange));
+            on(this.countryList,'change',lang.hitch(this,this.countryListChange));
             on(this.reset,'click',lang.hitch(this,this.resetClick));
             on(this.search,'click',lang.hitch(this,this.searchClick));
         },
@@ -76,12 +75,23 @@ define([
             //获取选择城市
             var selectedCity = this.cityList.options[this.cityList.selectedIndex].value;
             //清除之前的边界
-            this.view.map.remove(this.mapImageLayer);
-            this.view.graphics.items = null;
+            window.Global.view.map.remove(this.mapImageLayer);
+            window.Global.view.graphics.items = null;
             //在视图中显示并转到选择的视图
             this.goToSelectedCity(selectedCity, 'city');
             //更新县级选项
             this.updateCountryList(selectedCity);
+        },
+
+        /*
+        县级市列表改变事件
+         */
+        countryListChange: function () {
+            var selectedCountry = this.countryList.options[this.countryList.selectedIndex].value;
+            //清除之前的边界
+            window.Global.view.map.remove(this.mapImageLayer);
+            window.Global.view.graphics.items = null;
+            this.goToSelectedCity(selectedCountry, 'country');
         },
 
         /*
@@ -92,8 +102,8 @@ define([
             var countryList = this.countryList;
             cityList.selectedIndex = 0;
             countryList.innerHTML = "<option>区县旗</option>";
-            this.view.map.remove(this.mapImageLayer);
-            this.view.graphics.items = null;
+            window.Global.view.map.remove(this.mapImageLayer);
+            window.Global.view.graphics.items = null;
         },
 
         /*
@@ -110,7 +120,7 @@ define([
                     visible: true,
                     definitionExpression: clause
                 }];
-               this.view.map.add(this.mapImageLayer);
+                window.Global.view.map.add(this.mapImageLayer);
             }else {
                 //errorMessageControl.showError("请先选择行政区范围");
             }
@@ -134,7 +144,7 @@ define([
 
         /*
          将查询到的结果(graphic[]集合)根据给定的符号，加载到视图中
-         */
+         在查询回调then中，this指向的是window，无法调用次方法，如何解决?
         addQueryResultToView: function (results,symbol) {
             var features = results.features;
             if (features.length > 0) {
@@ -145,12 +155,13 @@ define([
                 });
 
                 //添加新选择的,并将试图转到新的视图
-                this.view.graphics.addMany(graphics);
-                this.view.goTo({
+                window.Global.view.graphics.addMany(graphics);
+                window.Global.view.goTo({
                     target: graphics
                 });
             }
         },
+         */
 
         /*
          根据选择的城市，显示城市范围，并定位到该城市
@@ -170,10 +181,10 @@ define([
             //查询条件
             if (cityName) {
                 featureQuery.where = "NAME='" + cityName + "'";
-                featureQuery.outSpatialReference = this.view.spatialReference;
+                featureQuery.outSpatialReference = window.Global.view.spatialReference;
                 featureQuery.outFields = ["*"];
                 featureQuery.returnGeometry = true;
-                queryTask.execute(featureQuery).then(function (result) {
+                queryTask.execute(featureQuery).then( function (result) {
                     var simpleFillSymbol = new SimpleFillSymbol({
                         color: [0, 0, 0, 0],
                         style: 'solid',
@@ -182,8 +193,25 @@ define([
                             width: 1.5
                         }
                     });
-                    this.addQueryResultToView(result,simpleFillSymbol);
+
+                    //怎么调用addQueryResultToView？？,当前this指向的是window.
+                    //定义了一个window.Global，保存了view，方法可行。
+                    var features = result.features;
+                    if (features.length > 0) {
+                        //给每个要素添加符号
+                        var graphics = features.map(function (feature) {
+                            feature.symbol = simpleFillSymbol;
+                            return feature;
+                        });
+
+                        //添加新选择的,并将试图转到新的视图
+                        window.Global.view.graphics.addMany(graphics);
+                        window.Global.view.goTo({
+                            target: graphics
+                        });
+                    }
                 });
+
             }
         },
 

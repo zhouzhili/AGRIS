@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>农业估产信息系统</title>
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <!--bootstrap样式引用-->
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
+    <script src="libs/jquery/jquery.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.js"></script>
+
+    <!--自定义模块配置文件-->
+    <script>
+        var localPath = location.pathname.replace(/\/[^/]*$/, '');
+        var dojoConfig = {
+            async: true,
+            packages: [
+                {
+                    name: "widgets",
+                    location: localPath + "/widgets"
+                },
+                {
+                    name: "app",
+                    location: localPath + "/app"
+                }
+            ]
+        };
+    </script>
+
+    <!--arcgis_api引用-->
+    <link rel="stylesheet" href="libs/arcgis_js_api/library/4.0/4.0/esri/css/main.css">
+    <script src="libs/arcgis_js_api/library/4.0/4.0/init.js"></script>
+
+    <!--&lt;!&ndash;自己的样式和js&ndash;&gt;-->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+</body>
+<script>
+    require([
+        'app/Main',
+        'dojo/domReady!'
+    ], function (Main) {
+        Main.initApp();
+    });
+</script>
+</html>

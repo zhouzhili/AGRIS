@@ -1,4 +1,4 @@
-html, body, #viewDiv, .mainContainer {
+html, body, .viewDiv, .mainContainer,.map {
     padding: 0;
     margin: 0;
     width: 100%;
@@ -79,7 +79,13 @@ html, body, #viewDiv, .mainContainer {
 .panel-list {
     padding: 4px;
 }
-
+.searchPanel{
+    position: absolute;
+    max-width: 400px;
+    right: 2%;
+    top:5%;
+    z-index: 999;
+}
 .searchDiv {
     height: 34px;
 }

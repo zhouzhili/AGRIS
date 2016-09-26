@@ -1998,7 +1998,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * Get option for output (cloned option and inner info removed)
-	         * @public
+	         * @client
 	         * @return {Object}
 	         */
 	        getOption: function () {
@@ -3086,7 +3086,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    /**
-	     * @public
+	     * @client
 	     */
 	    modelUtil.capitalFirst = function (str) {
 	        return str ? str.charAt(0).toUpperCase() + str.substr(1) : str;
@@ -3095,7 +3095,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Iterate each dimension name.
 	     *
-	     * @public
+	     * @client
 	     * @param {Function} callback The parameter is like:
 	     *                            {
 	     *                                name: 'angle',
@@ -3126,7 +3126,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * dataZoomModels and 'links' make up one or more graphics.
 	     * This function finds the graphic where the source dataZoomModel is in.
 	     *
-	     * @public
+	     * @client
 	     * @param {Function} forEachNode Node iterator.
 	     * @param {Function} forEachEdgeType edgeType iterator
 	     * @param {Function} edgeIdGetter Giving node and edgeType, return an array of edge id.
@@ -3389,7 +3389,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Mapping to exists for merge.
 	     *
-	     * @public
+	     * @client
 	     * @param {Array.<Object>|Array.<module:echarts/model/Component>} exists
 	     * @param {Object|Array.<Object>} newCptOptions
 	     * @return {Array.<Object>} Result, like [{exist: ..., option: ...}, {}],
@@ -3466,7 +3466,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    /**
-	     * @public
+	     * @client
 	     * @param {Object} cptOption
 	     * @return {boolean}
 	     */
@@ -5005,7 +5005,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var TYPE_DELIMITER = '.';
 	    var IS_CONTAINER = '___EC__COMPONENT__CONTAINER___';
 	    /**
-	     * @public
+	     * @client
 	     */
 	    var parseClassType = clazz.parseClassType = function (componentType) {
 	        var ret = {main: '', sub: ''};
@@ -5017,7 +5017,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return ret;
 	    };
 	    /**
-	     * @public
+	     * @client
 	     */
 	    clazz.enableClassExtend = function (RootClass) {
 
@@ -5595,7 +5595,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var DELIMITER = '_';
 
 	    /**
-	     * @public
+	     * @client
 	     * @param {string} type
 	     * @return {string}
 	     */
@@ -5643,7 +5643,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    componentUtil.enableTopologicalTravel = function (entity, dependencyGetter) {
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {Array.<string>} targetNameList Target Component type list.
 	         *                                           Can be ['aa', 'bb', 'aa.xx']
 	         * @param {Array.<string>} fullNameList By which we can build dependency graph.
@@ -6483,7 +6483,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        constructor: OptionManager,
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {Object} rawOption Raw option.
 	         * @param {module:echarts/model/Global} ecModel
 	         * @param {Array.<Function>} optionPreprocessorFuncs
@@ -26306,7 +26306,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {number} rangeStart
 	         * @param {number} rangeEnd
 	         */
@@ -26316,7 +26316,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @return {Array.<number|string|Date>}
 	         */
 	        getMin: function () {
@@ -26325,7 +26325,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @return {Array.<number|string|Date>}
 	         */
 	        getMax: function () {
@@ -26334,7 +26334,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @return {boolean}
 	         */
 	        getNeedCrossZero: function () {
@@ -33216,7 +33216,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {Object} layoutInfo {
 	         *                                x: containerGroup x
 	         *                                y: containerGroup y
@@ -33634,7 +33634,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @return {number}
 	         */
 	        getRawIndex: function () {
@@ -33642,7 +33642,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @return {string}
 	         */
 	        getId: function () {
@@ -33827,7 +33827,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    /**
 	     * It is needed to consider the mess of 'list', 'hostModel' when creating a TreeNote,
-	     * so this function is not ready and not necessary to be public.
+	     * so this function is not ready and not necessary to be client.
 	     *
 	     * @param {(module:echarts/data/Tree~TreeNode|Object)} child
 	     */
@@ -33943,7 +33943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Supplement method to List.
 	     *
-	     * @public
+	     * @client
 	     * @param {string} [dataType] If not specified, return mainData.
 	     * @return {module:echarts/data/List}
 	     */
@@ -34580,7 +34580,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {number} x Global coord x.
 	         * @param {number} y Global coord y.
 	         * @return {Object} info If not found, return undefined;
@@ -35532,13 +35532,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var visualHandler = visualHandlers[visualType];
 
 	        /**
-	         * @public
+	         * @client
 	         * @type {Function}
 	         */
 	        this.applyVisual = visualHandler.applyVisual;
 
 	        /**
-	         * @public
+	         * @client
 	         * @type {Function}
 	         */
 	        this.getColorMapper = visualHandler.getColorMapper;
@@ -35858,14 +35858,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	    /**
-	     * @public
+	     * @client
 	     */
 	    VisualMapping.addVisualHandler = function (name, handler) {
 	        visualHandlers[name] = handler;
 	    };
 
 	    /**
-	     * @public
+	     * @client
 	     */
 	    VisualMapping.isValidType = function (visualType) {
 	        return visualHandlers.hasOwnProperty(visualType);
@@ -35875,7 +35875,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Convinent method.
 	     * Visual can be Object or Array or primary type.
 	     *
-	     * @public
+	     * @client
 	     */
 	    VisualMapping.eachVisual = function (visual, callback, context) {
 	        if (zrUtil.isObject(visual)) {
@@ -35902,7 +35902,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    /**
-	     * @public
+	     * @client
 	     * @param {Object} obj
 	     * @return {Oject} new object containers visual values.
 	     *                 If no visuals, return null.
@@ -35924,7 +35924,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Give order to visual types, considering colorSaturation, colorAlpha depends on color.
 	     *
-	     * @public
+	     * @client
 	     * @param {(Object|Array)} visualTypes If Object, like: {color: ..., colorSaturation: ...}
 	     *                                     IF Array, like: ['color', 'symbol', 'colorSaturation']
 	     * @return {Array.<string>} Sorted visual types.
@@ -35958,7 +35958,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * 'color', 'colorSaturation', 'colorAlpha', ... are depends on 'color'.
 	     * Other visuals are only depends on themself.
 	     *
-	     * @public
+	     * @client
 	     * @param {string} visualType1
 	     * @param {string} visualType2
 	     * @return {boolean}
@@ -36064,7 +36064,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var each = zrUtil.each;
 
 	    /**
-	     * @public
+	     * @client
 	     */
 	    function update(ecModel, api, payload) {
 	        // Layout result in each node:
@@ -40975,7 +40975,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *
 	         * @param {Array.<Array<number>>} intervals interval.length === 0
 	         *                                          means set all active.
-	         * @public
+	         * @client
 	         */
 	        setActiveIntervals: function (intervals) {
 	            var activeIntervals = this.activeIntervals = zrUtil.clone(intervals);
@@ -40994,7 +40994,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @return {string} 'normal': no activeIntervals set,
 	         *                  'active',
 	         *                  'inactive'.
-	         * @public
+	         * @client
 	         */
 	        getActiveState: function (value) {
 	            var activeIntervals = this.activeIntervals;
@@ -42401,7 +42401,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * User can get data raw indices on 'axisAreaSelected' event received.
 	         *
-	         * @public
+	         * @client
 	         * @param {string} activeState 'active' or 'inactive' or 'normal'
 	         * @return {Array.<number>} Raw indices
 	         */
@@ -51325,7 +51325,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var THROTTLE_TYPE = '\0__throttleType';
 
 	    /**
-	     * @public
+	     * @client
 	     * @param {(Function)} fn
 	     * @param {number} [delay=0] Unit: ms.
 	     * @param {boolean} [debounce=false]
@@ -51376,7 +51376,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * Clear throttle.
-	         * @public
+	         * @client
 	         */
 	        cb.clear = function () {
 	            if (timer) {
@@ -51408,7 +51408,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     *     throttle.clear(this, '_dispatchAction');
 	     * };
 	     *
-	     * @public
+	     * @client
 	     * @param {Object} obj
 	     * @param {string} fnAttr
 	     * @param {number} [rate]
@@ -51445,7 +51445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * Clear throttle. Example see throttle.createOrUpdate.
 	     *
-	     * @public
+	     * @client
 	     * @param {Object} obj
 	     * @param {string} fnAttr
 	     */
@@ -52730,7 +52730,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         */
 	        getFirstTargetAxisModel: function () {
 	            var firstAxisModel;
@@ -52747,7 +52747,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {Function} callback param: axisModel, dimNames, axisIndex, dataZoomModel, ecModel
 	         */
 	        eachTargetAxis: function (callback, context) {
@@ -52787,7 +52787,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @return {Array.<number>} [startPercent, endPercent]
 	         */
 	        getPercentRange: function () {
@@ -52798,7 +52798,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * For example, chart.getModel().getComponent('dataZoom').getValueRange('y', 0);
 	         *
 	         * @param {string} [axisDimName]
@@ -52818,7 +52818,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @return {module:echarts/component/dataZoom/AxisProxy}
 	         */
 	        findRepresentativeAxisProxy: function () {
@@ -52943,7 +52943,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * Whether the axisProxy is hosted by dataZoomModel.
 	         *
-	         * @public
+	         * @client
 	         * @param {module: echarts/component/dataZoom/DataZoomModel} dataZoomModel
 	         * @return {boolean}
 	         */
@@ -52973,7 +52973,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {number} axisIndex
 	         * @return {Array} seriesModels
 	         */
@@ -54498,7 +54498,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {module:echarts/ExtensionAPI} api
 	         * @param {string} dataZoomId
 	         */
@@ -54517,7 +54517,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         */
 	        shouldRecordRange: function (payload, dataZoomId) {
 	            if (payload && payload.type === 'dataZoom' && payload.batch) {
@@ -54531,7 +54531,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         */
 	        generateCoordId: function (coordModel) {
 	            return coordModel.type + '\0_' + coordModel.id;
@@ -55031,7 +55031,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         */
 	        getSelected: function () {
 	            var dataExtent = this.getExtent();
@@ -55351,7 +55351,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         */
 	        eachTargetSeries: function (callback, context) {
 	            zrUtil.each(this.option.seriesIndex, function (seriesIndex) {
@@ -55456,7 +55456,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {module:echarts/data/List} list
 	         * @return {string} Concrete dimention. If return null/undefined,
 	         *                  no dimension used.
@@ -55468,7 +55468,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @override
 	         */
 	        getExtent: function () {
@@ -55631,20 +55631,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         */
 	        isCategory: function () {
 	            return !!this.option.categories;
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @abstract
 	         */
 	        setSelected: noop,
 
 	        /**
-	         * @public
+	         * @client
 	         * @abstract
 	         * @param {*|module:echarts/data/List} valueOrData
 	         * @param {number} dataIndex
@@ -55672,7 +55672,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var visualDefault = {
 
 	        /**
-	         * @public
+	         * @client
 	         */
 	        get: function (visualType, key, isCategory) {
 	            var value = zrUtil.clone(
@@ -56978,7 +56978,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         */
 	        getSelectedMapKey: function (piece) {
 	            return this._mode === 'categories'
@@ -56986,7 +56986,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         */
 	        getPieceList: function () {
 	            return this._pieceList;
@@ -57007,7 +57007,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @override
 	         */
 	        setSelected: function (selected) {
@@ -57015,7 +57015,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @override
 	         */
 	        getValueState: function (value) {
@@ -57029,7 +57029,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @params {number} pieceIndex piece index in visualMapModel.getPieceList()
 	         * @return {Array.<Object>} [{seriesId, dataIndices: <Array.<number>>}, ...]
 	         */
@@ -59365,7 +59365,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @return {Array.<string>} categoreis
 	         */
 	        getCategories: function () {
@@ -60144,7 +60144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        constructor: TimelineAxis,
 
 	        /**
-	         * @public
+	         * @client
 	         * @return {number}
 	         */
 	        getLabelInterval: function () {
@@ -60173,7 +60173,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        /**
 	         * If label is ignored.
 	         * Automatically used when axis is category and label can not be all shown
-	         * @public
+	         * @client
 	         * @param  {number} idx
 	         * @return {boolean}
 	         */
@@ -61689,7 +61689,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var history = {
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {module:echarts/model/Global} ecModel
 	         * @param {Object} newSnapshot {dataZoomId, batch: [payloadInfo, ...]}
 	         */
@@ -61726,7 +61726,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {module:echarts/model/Global} ecModel
 	         * @return {Object} snapshot
 	         */
@@ -61751,14 +61751,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         */
 	        clear: function (ecModel) {
 	            ecModel[ATTR] = null;
 	        },
 
 	        /**
-	         * @public
+	         * @client
 	         * @param {module:echarts/model/Global} ecModel
 	         * @return {number} records. always >= 1.
 	         */

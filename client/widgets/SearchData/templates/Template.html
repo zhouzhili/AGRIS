@@ -1,0 +1,68 @@
+<div class="panel-list searchPanel" >
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <a role="button"  data-dojo-attach-point="searchPanelHead">
+                <h4><strong>数据查询</strong></h4>
+            </a>
+        </div>
+        <div class="panel-body panelHide"  data-dojo-attach-point="searchPanelBody">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-1 searchDiv">
+                        <img src="./images/geometry.png" class="searchImg">
+                    </div>
+                    <div class="col-sm-5">
+                        <select class="form-control"  data-dojo-attach-point="cityList">
+                            <option value="地级市州">地级市州</option>
+                            <option value="武汉市">武汉市</option>
+                            <option value="黄石市">黄石市</option>
+                            <option value="十堰市">十堰市</option>
+                            <option value="宜昌市">宜昌市</option>
+                            <option value="襄阳市">襄阳市</option>
+                            <option value="鄂州市">鄂州市</option>
+                            <option value="荆门市">荆门市</option>
+                            <option value="孝感市">孝感市</option>
+                            <option value="荆州市">荆州市</option>
+                            <option value="黄冈市">黄冈市</option>
+                            <option value="咸宁市">咸宁市</option>
+                            <option value="随州市">随州市</option>
+                            <option value="恩施土家族苗族自治州">恩施土家族苗族自治州</option>
+                            <option>省直辖</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <select class="form-control"  data-dojo-attach-point="countryList">
+                            <option>区县旗</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-1 searchDiv">
+                        <img src="./images/date.png" class="searchImg">
+                    </div>
+                    <label for="fromDate" class="control-label col-sm-4">时间范围:</label>
+                    <div class="col-sm-6">
+                        <input type="date" class="form-control" id="fromDate" data-dojo-attach-point="fromDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="toDate" class="control-label col-sm-5">至:</label>
+                    <div class="col-sm-6">
+                        <input type="date" class="form-control" id="toDate" data-dojo-attach-point="toDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-3">
+                        <button type="button" class="btn btn-primary"  data-dojo-attach-point="reset">重置</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-primary" data-dojo-attach-point="search">查询</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" class="btn btn-primary" data-dojo-attach-point="statistics">统计图表</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

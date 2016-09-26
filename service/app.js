@@ -10,8 +10,7 @@ var routes = require('./routes/index');
 
 var app = express();
 
-//视图位置
-app.set('views', path.join(__dirname, 'views'));
+
 //监听端口
 app.set('port', process.env.PORT || 3000);
 
@@ -20,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 //静态文件位置
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 //路由分发
 routes(app);

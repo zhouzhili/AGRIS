@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="wrap">
+    <div class="searchContainer">
+        <div class="search searchText ">查询</div>
+        <input type="text" class="search searchInput " placeholder="输入城市名查询">
+        <div class="search searchBtn "></div>
+    </div>
+
+    <div class="tabContent container" id="tabContent">
+        <div class="row ">
+            <div class="col-sm-1">
+                <img src="../images/geometry.png" class="searchImg">
+            </div>
+            <div class="col-sm-5">
+                <select class="form-control" id="city-list">
+                    <option value="地级市州">地级市州</option>
+                    <option value="武汉市">武汉市</option>
+                    <option value="黄石市">黄石市</option>
+                    <option value="十堰市">十堰市</option>
+                    <option value="宜昌市">宜昌市</option>
+                    <option value="襄阳市">襄阳市</option>
+                    <option value="鄂州市">鄂州市</option>
+                    <option value="荆门市">荆门市</option>
+                    <option value="孝感市">孝感市</option>
+                    <option value="荆州市">荆州市</option>
+                    <option value="黄冈市">黄冈市</option>
+                    <option value="咸宁市">咸宁市</option>
+                    <option value="随州市">随州市</option>
+                    <option value="恩施土家族苗族自治州">恩施土家族苗族自治州</option>
+                    <option>省直辖</option>
+                </select>
+            </div>
+            <div class="col-sm-5">
+                <select class="form-control" id="country-list">
+                    <option>区县旗</option>
+                </select>
+            </div>
+        </div>
+        <hr class="searchHr">
+        <div class="btnContent">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default">Left</button>
+                <button type="button" class="btn btn-default">Middle</button>
+                <button type="button" class="btn btn-default">Right</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="imgContainer" id="imgBtn">
+        <img src="../images/open.png">
+    </div>
+
+</div>
+</body>
+<script>
+    $("#imgBtn").click(function () {
+        $("#tabContent").slideToggle();
+    })
+</script>
+</html>

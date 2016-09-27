@@ -91,7 +91,8 @@ html, body, .viewDiv, .mainContainer,.map {
 }
 
 .searchImg {
-    margin-top: 4px;
+    display: inline-block;
+    height: 34px;
 }
 
 .toolboxImg {

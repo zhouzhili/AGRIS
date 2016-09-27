@@ -65,7 +65,7 @@ define([
          查询面板顶部栏点击事件:展开或折叠面板
          */
         searchPanelHeadClick: function () {
-            domClass.toggle(this.searchPanelBody, 'panelHide');
+            $('#searchPanelBody').fadeToggle();
         },
 
         /*
@@ -75,8 +75,8 @@ define([
             //获取选择城市
             var selectedCity = this.cityList.options[this.cityList.selectedIndex].value;
             //清除之前的边界
-            window.Global.view.map.remove(this.mapImageLayer);
-            window.Global.view.graphics.items = null;
+            Global.view.map.remove(this.mapImageLayer);
+            Global.view.graphics.items = null;
             //在视图中显示并转到选择的视图
             this.goToSelectedCity(selectedCity, 'city');
             //更新县级选项
@@ -89,8 +89,8 @@ define([
         countryListChange: function () {
             var selectedCountry = this.countryList.options[this.countryList.selectedIndex].value;
             //清除之前的边界
-            window.Global.view.map.remove(this.mapImageLayer);
-            window.Global.view.graphics.items = null;
+            Global.view.map.remove(this.mapImageLayer);
+            Global.view.graphics.items = null;
             this.goToSelectedCity(selectedCountry, 'country');
         },
 
@@ -102,8 +102,8 @@ define([
             var countryList = this.countryList;
             cityList.selectedIndex = 0;
             countryList.innerHTML = "<option>区县旗</option>";
-            window.Global.view.map.remove(this.mapImageLayer);
-            window.Global.view.graphics.items = null;
+            Global.view.map.remove(this.mapImageLayer);
+            Global.view.graphics.items = null;
         },
 
         /*
@@ -120,7 +120,7 @@ define([
                     visible: true,
                     definitionExpression: clause
                 }];
-                window.Global.view.map.add(this.mapImageLayer);
+                Global.view.map.add(this.mapImageLayer);
             }else {
                 //errorMessageControl.showError("请先选择行政区范围");
             }
@@ -205,8 +205,8 @@ define([
                         });
 
                         //添加新选择的,并将试图转到新的视图
-                        window.Global.view.graphics.addMany(graphics);
-                        window.Global.view.goTo({
+                        Global.view.graphics.addMany(graphics);
+                        Global.view.goTo({
                             target: graphics
                         });
                     }

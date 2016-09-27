@@ -1,22 +1,29 @@
-*{
+* {
     font-family: Arial, 微软雅黑, "Hiragino Sans GB", 新宋体, sans-serif;
     -webkit-font-smoothing: antialiased;
 }
-.wrap{
-    width: 450px;
+
+.wrap {
+    width: 350px;
+    position: absolute;
+    z-index: 999;
+    top: 5%;
+    right: 5%;
 }
-.searchContainer{
+
+.searchContainer {
     padding: 0;
     border: 0;
     margin: 0;
-    box-shadow: 0 0 4px #dadada;
+    box-shadow: 0 0 4px #a9a9a9;
     height: 35px;
-    width: 450px;
     font-size: 0;
     text-align: center;
     overflow: hidden;
+    background-color: #fff;
 }
-.search{
+
+.search {
     padding: 0;
     border: 0;
     margin: 0;
@@ -25,7 +32,8 @@
     display: block;
     float: left;
 }
-.searchText{
+
+.searchText {
     width: 13%;
     background-color: #7cb1f1;
     color: #fff;
@@ -33,48 +41,56 @@
     text-align: center;
     line-height: 35px;
 }
-.searchInput{
+
+.searchInput {
     width: 77%;
     padding-left: 5px;
+    border-bottom: 1px solid #dedede;
 }
-.searchBtn{
+
+.searchBtn {
     width: 10%;
-    background: url("../images/searchbutton.png") no-repeat center;
+    background: url(../images/searchbutton.png) no-repeat center;
     cursor: pointer;
 }
-.imgContainer img{
-    height: 10px;
+
+.dropDown{
+    height: 8px;
     width: 15px;
-    margin-top: 1px;
     cursor: pointer;
 }
-.imgContainer{
+
+.imgContainer {
     background-color: #f5f5f5;
     height: 18px;
     margin-left: 40%;
     width: 20%;
     border-radius: 0 0 200px 200px;
-    box-shadow: 0 0 3px #dadada;
+    box-shadow: 0 0 3px #a9a9a9;
     text-align: center;
+    cursor: pointer;
 }
+
 .searchImg {
     margin-top: 4px;
 }
-.tabContent{
+
+.tabContent {
     margin: 0;
     padding: 10px;
-    box-shadow: 0 0 4px #dadada;
-    width: 450px;
+    box-shadow: 0 0 4px #a9a9a9;
     display: none;
+    width: 350px;
+    background-color: #fff;
 }
-body{
-    padding: 30px;
-}
-.btnContent{
+
+.btnContent {
     padding: 10px;
     margin-left: 20%;
 }
-.searchHr{
+
+.searchHr {
     margin-top: 10px;
     margin-bottom: 10px;
+    border-top: 1px solid #d4d4d4;
 }

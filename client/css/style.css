@@ -90,10 +90,6 @@ html, body, .viewDiv, .mainContainer,.map {
     height: 34px;
 }
 
-.searchImg {
-    display: inline-block;
-    height: 34px;
-}
 
 .toolboxImg {
     min-height: 16px;

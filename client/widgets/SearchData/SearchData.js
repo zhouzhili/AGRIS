@@ -13,7 +13,7 @@ define([
     "esri/tasks/support/Query",
     "esri/symbols/SimpleFillSymbol",
     'dojo/text!./templates/Template.html'
-], function (on, dom, domClass, lang, declare, _baseWidget,layers,QueryTask,Query,SimpleFillSymbol, template) {
+], function (on, dom, domClass, lang, declare, _baseWidget, layers, QueryTask, Query, SimpleFillSymbol, template) {
     return declare([_baseWidget], {
         templateString: template,
         constructor: function (args) {
@@ -54,18 +54,23 @@ define([
          初始化事件
          */
         addEvent: function () {
-            on(this.searchPanelHead, 'click', lang.hitch(this, this.searchPanelHeadClick));
-            on(this.cityList,'change',lang.hitch(this,this.cityListChange));
-            on(this.countryList,'change',lang.hitch(this,this.countryListChange));
-            on(this.reset,'click',lang.hitch(this,this.resetClick));
-            on(this.search,'click',lang.hitch(this,this.searchClick));
+            on(this.imgBtn, 'click', lang.hitch(this, this.imgBtnClick));
+            on(this.cityList, 'change', lang.hitch(this, this.cityListChange));
+            on(this.countryList, 'change', lang.hitch(this, this.countryListChange));
+            on(this.reset, 'click', lang.hitch(this, this.resetClick));
+            on(this.search, 'click', lang.hitch(this, this.searchClick));
         },
 
         /*
-         查询面板顶部栏点击事件:展开或折叠面板
+         查询面板底部点击事件:展开或折叠面板
          */
-        searchPanelHeadClick: function () {
-            $('#searchPanelBody').fadeToggle();
+        imgBtnClick: function () {
+            $("#tabContent").slideToggle();
+            var close = "../widgets/SearchData/images/close.png";
+            var open="../widgets/SearchData/images/open.png";
+            var currentSrc = $("#dropDownIcon").attr("src");
+            var src=(currentSrc===open)?close:open;
+            $("#dropDownIcon").attr("src",src);
         },
 
         /*
@@ -84,7 +89,7 @@ define([
         },
 
         /*
-        县级市列表改变事件
+         县级市列表改变事件
          */
         countryListChange: function () {
             var selectedCountry = this.countryList.options[this.countryList.selectedIndex].value;
@@ -95,7 +100,7 @@ define([
         },
 
         /*
-        重置按钮事件
+         重置按钮事件
          */
         resetClick: function () {
             var cityList = this.cityList;
@@ -107,13 +112,13 @@ define([
         },
 
         /*
-        查询按钮事件
+         查询按钮事件
          */
         searchClick: function () {
-            var clause=this.getSelectClause();
-            if(clause!=""){
+            var clause = this.getSelectClause();
+            if (clause != "") {
                 //移除上一次查询结果
-                this.view.map.remove(this.mapImageLayer);
+                Global.view.map.remove(this.mapImageLayer);
                 //定义查询
                 this.mapImageLayer.sublayers = [{
                     id: 0,
@@ -121,17 +126,17 @@ define([
                     definitionExpression: clause
                 }];
                 Global.view.map.add(this.mapImageLayer);
-            }else {
+            } else {
                 //errorMessageControl.showError("请先选择行政区范围");
             }
         },
 
         /*
-        更新县级市城市列表
+         更新县级市城市列表
          */
         updateCountryList: function (cityName) {
             var countrySelect = this.countryList;
-            var countriesArray =this.countries[cityName];
+            var countriesArray = this.countries[cityName];
             //先清空country-list选项,然后更新新的选项
             countrySelect.options.length = 0;
             var optionLength = countriesArray.length;
@@ -145,22 +150,22 @@ define([
         /*
          将查询到的结果(graphic[]集合)根据给定的符号，加载到视图中
          在查询回调then中，this指向的是window，无法调用次方法，如何解决?
-        addQueryResultToView: function (results,symbol) {
-            var features = results.features;
-            if (features.length > 0) {
-                //给每个要素添加符号
-                var graphics = features.map(function (feature) {
-                    feature.symbol = symbol;
-                    return feature;
-                });
+         addQueryResultToView: function (results,symbol) {
+         var features = results.features;
+         if (features.length > 0) {
+         //给每个要素添加符号
+         var graphics = features.map(function (feature) {
+         feature.symbol = symbol;
+         return feature;
+         });
 
-                //添加新选择的,并将试图转到新的视图
-                window.Global.view.graphics.addMany(graphics);
-                window.Global.view.goTo({
-                    target: graphics
-                });
-            }
-        },
+         //添加新选择的,并将试图转到新的视图
+         window.Global.view.graphics.addMany(graphics);
+         window.Global.view.goTo({
+         target: graphics
+         });
+         }
+         },
          */
 
         /*
@@ -184,7 +189,7 @@ define([
                 featureQuery.outSpatialReference = window.Global.view.spatialReference;
                 featureQuery.outFields = ["*"];
                 featureQuery.returnGeometry = true;
-                queryTask.execute(featureQuery).then( function (result) {
+                queryTask.execute(featureQuery).then(function (result) {
                     var simpleFillSymbol = new SimpleFillSymbol({
                         color: [0, 0, 0, 0],
                         style: 'solid',

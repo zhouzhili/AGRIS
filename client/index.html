@@ -1,227 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>农业估产信息系统</title>
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <!--bootstrap样式引用-->
-    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.css">
-    <script src="libs/jquery/jquery.js"></script>
-    <script src="libs/bootstrap/js/bootstrap.js"></script>
-
-    <!--自定义模块配置文件-->
-    <script src="js/dojoConfig.js"></script>
-    <!--arcgis_api引用-->
-    <link rel="stylesheet" href="libs/arcgis_js_api/library/4.0/4.0/esri/css/main.css">
-    <script src="libs/arcgis_js_api/library/4.0/4.0/init.js"></script>
-
-    <!--&lt;!&ndash;自己的样式和js&ndash;&gt;-->
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js"></script>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+        div{
+            margin-left: 20%;
+            margin-top: 100px;
+            border: 1px solid #cecece;
+            width: 300px;
+            height: 60px;
+            text-align: center;
+            box-shadow: 0 0 10px #cecece;
+        }
+        a{
+            display: inline-block;
+            line-height: 60px;
+            margin-left: 50px;
+        }
+    </style>
 </head>
 <body>
-<ul class="errorToast" id="errorList"></ul>
-<div class="chartContainer" id="chartContainer">
-    <a role="button" class="chart-remove-con" id="removeChart">
-        <span class="glyphicon glyphicon-remove chart-remove"></span>
-    </a>
-    <div id="chartDiv" class="chart"></div>
+<div>
+    <a href="./oldSystem.html">旧系统界面</a>
+    <a href="./newSystem.html">新系统界面</a>
 </div>
-<nav class="navbar navbar-default navbar-fixed-top bluenavbg">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><span class="project">农业估产信息系统</span></a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#"><span class="whitenavFont">首页</span></a></li>
-                <li><a href="#"><span class="whitenavFont">查询</span></a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
-<div class="mainContainer clearfix">
-    <div class="mapContainer">
-        <div id="viewDiv"></div>
-    </div>
-    <div class="layerContainer">
-        <div class="panel-list">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <a role="button" id="toolboxHead">
-                        <h4>
-                            <strong>工具箱</strong>
-                        </h4>
-                    </a>
-                </div>
-                <div class="panel-body" id="toolboxBody">
-                    <button type="button" class="btn btn-primary " id="3DTo2DTool">视图转换</button>
-                    <button type="button" class="btn btn-primary " id="selectionTool">清除要素</button>
-                    <button type="button" class="btn btn-primary " id="identifyBtn">查看属性</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel-list">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <a role="button" id="searchDataHead">
-                        <h4><strong>数据查询</strong></h4>
-                    </a>
-                </div>
-                <div class="panel-body" id="searchDataBody">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-sm-1 searchDiv">
-                                <img src="images/geometry.png" class="searchImg">
-                            </div>
-                            <div class="col-sm-5">
-                                <select class="form-control" id="city-list">
-                                    <option value="地级市州">地级市州</option>
-                                    <option value="武汉市">武汉市</option>
-                                    <option value="黄石市">黄石市</option>
-                                    <option value="十堰市">十堰市</option>
-                                    <option value="宜昌市">宜昌市</option>
-                                    <option value="襄阳市">襄阳市</option>
-                                    <option value="鄂州市">鄂州市</option>
-                                    <option value="荆门市">荆门市</option>
-                                    <option value="孝感市">孝感市</option>
-                                    <option value="荆州市">荆州市</option>
-                                    <option value="黄冈市">黄冈市</option>
-                                    <option value="咸宁市">咸宁市</option>
-                                    <option value="随州市">随州市</option>
-                                    <option value="恩施土家族苗族自治州">恩施土家族苗族自治州</option>
-                                    <option>省直辖</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-5">
-                                <select class="form-control" id="country-list">
-                                    <option>区县旗</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-1 searchDiv">
-                                <img src="images/date.png" class="searchImg">
-                            </div>
-                            <label for="fromDate" class="control-label col-sm-4">时间范围:</label>
-                            <div class="col-sm-6">
-                                <input type="date" class="form-control" id="fromDate">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="toDate" class="control-label col-sm-5">至:</label>
-                            <div class="col-sm-6">
-                                <input type="date" class="form-control" id="toDate">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-1 col-sm-3">
-                                <button type="button" class="btn btn-primary" id="reset">重置</button>
-                            </div>
-                            <div class="col-sm-3">
-                                <button type="button" class="btn btn-primary" id="search">查询</button>
-                            </div>
-                            <div class="col-sm-3">
-                                <button type="button" class="btn btn-primary" id="statistics">统计图表</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel-list">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <a role="button" id="layerListHead">
-                        <h4><strong>图层列表</strong></h4>
-                    </a>
-                </div>
-                <div class="panel-body" id="layerListBody">
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne">
-                                <h5 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                       aria-expanded="true" aria-controls="collapseOne">
-                                        2014年冬小麦
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
-                                 aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="pp429004">
-                                            仙桃市冬小麦
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="DM2014">
-                                            花生种植面积
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="hh19870910">
-                                            油菜种植面积
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                                <h5 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
-                                       aria-expanded="true" aria-controls="collapseTwo">
-                                        2014年夏季数据
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
-                                 aria-labelledby="headingTwo">
-                                <div class="panel-body">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="hh_water_20120801">
-                                            水稻种植面积
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="hh_water_20121201">
-                                            花生种植面积
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="hh_water_20130401">
-                                            油菜种植面积
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
 </body>
 </html>

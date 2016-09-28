@@ -7,8 +7,8 @@
     width: 350px;
     position: absolute;
     z-index: 999;
-    top: 2%;
-    left: 1%;
+    top: 20px;
+    left: 15px;
 }
 
 .searchContainer {

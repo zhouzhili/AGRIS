@@ -6,7 +6,8 @@
 }
 .navMenuContainer {
     font-family: Arial, 微软雅黑, "Hiragino Sans GB", 新宋体, sans-serif;
-    width: 121px;
+    width: 132px;
+    height: 32px;
     float: left;
 }
 
@@ -18,24 +19,22 @@
     margin-left: 10px;
     cursor: pointer;
     transform: rotate(0deg);
+    -webkit-transform:rotate(0deg) ;
+    box-shadow: 0 0px 12px rgba(0, 0, 0, 0.28);
 }
 
 .navMenu {
     height: 32px;
-    background-color: #00c0f0;
+    background-color: #f17878;
     color: #fff;
     margin: 0;
     padding: 0;
     font-size: 15px;
+    width: 0;
 
     /*添加菜单栏后需要修改长度*/
-    display: none;
-
     /*加上向右浮动后，实现从右向左收起和展开*/
-    /*
     float: right;
-    animation: myFirst 2s;
-    */
 }
 
 .navMenuItem {
@@ -48,18 +47,53 @@
 .navMenuItem > div {
     padding-left: 10px;
 }
-
+.lastMenuDiv{
+    padding-right: 10px;
+}
 .borderLeft {
     border-left: 1px solid #fff;
 }
-
-/*
-@keyframes myFirst {
-    0% {
-        width: 121px;
-    }
-    100% {
-        width: 0;
-    }
+.clearFloat{
+    overflow: hidden;
 }
-*/
+
+@keyframes openMenu{
+    0% {width: 0;}
+    100% {width: 132px;}
+}
+@-moz-keyframes openMenu{
+    0% {width: 0;}
+    100% {width: 132px;}
+}
+@-webkit-keyframes openMenu{
+    0% {width: 0;}
+    100% {width: 132px;}
+}
+
+@keyframes closeMenu{
+    0% {width: 132px;}
+    100% {width: 0;}
+}
+@-moz-keyframes closeMenu{
+    0% {width: 132px;}
+    100% {width: 0;}
+}
+@-webkit-keyframes closeMenu{
+    0% {width: 132px;}
+    100% {width: 0;}
+}
+.openAnimate{
+    animation: openMenu 1s;
+    -moz-animation: openMenu 1s;
+    -webkit-animation: openMenu 1s;
+    width: 132px;
+}
+.closeAnimate{
+    animation: closeMenu 1s;
+    -moz-animation: closeMenu 1s;
+    -webkit-animation: closeMenu 1s;
+    width: 0;
+}
+
+
+

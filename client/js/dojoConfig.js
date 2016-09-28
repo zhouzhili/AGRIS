@@ -7,15 +7,15 @@ var dojoConfig = {
     packages: [
         {
             name: "controllers",
-            location: location.pathname.replace(/\/[^/]*$/, '') + '/javascripts/controllers'
+            location: location.pathname.replace(/\/[^/]*$/, '') + '/js/controllers'
         },
         {
             name:"models",
-            location:location.pathname.replace(/\/[^/]*$/, '') + '/javascripts/models'
+            location:location.pathname.replace(/\/[^/]*$/, '') + '/js/models'
         },
         {
             name:"Chart",
-            location:location.pathname.replace(/\/[^/]*$/, '') + '/components/Chart'
+            location:location.pathname.replace(/\/[^/]*$/, '') + '/libs/Chart'
         }
     ]
 };

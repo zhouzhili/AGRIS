@@ -5,12 +5,14 @@
 define([
     'dojo/on',
     'dojo/dom',
+    'dojo/dom-attr',
     'dojo/dom-style',
+    'dojo/dom-class',
     'dojo/_base/declare',
     'dojo/_base/lang',
     'widgets/BaseWidget/_baseWidget',
     'dojo/text!./templates/Template.html'
-], function (on, dom, domStyle, declare, lang, _baseWidget, template) {
+], function (on, dom,domAttr, domStyle,domClass, declare, lang, _baseWidget, template) {
     return declare([_baseWidget], {
         templateString: template,
 
@@ -23,16 +25,20 @@ define([
         },
 
         navCtrBtnClick: function () {
-            var rotate=$("#navCtrBtn").css("transform");
-            if(rotate==="rotate(0deg)"){
-                $("#navMenuList").css('display','block');
-                $("#navMenuList").animate({"width":"121px"});
-                $("#navCtrBtn").css("transform","rotate(-180deg)");
+            var target=domAttr.get(this.navCtrBtn,'data-target');
+            if(target=='close'){
+                this.addAnimation('open','closeAnimate','openAnimate','rotate(-180deg)','折叠菜单');
             }else {
-                $("#navMenuList").animate({"width":"0px"});
-                $("#navMenuList").css('display','none');
-                $("#navCtrBtn").css("transform","rotate(0deg)");
+                this.addAnimation('close','openAnimate','closeAnimate','rotate(0deg)','展开菜单');
             }
+        },
+
+        addAnimation: function (targetValue,removeClass ,addClass ,transform,title) {
+            domAttr.set(this.navCtrBtn,'data-target',targetValue);
+            domClass.remove(this.navMenuList,removeClass);
+            domClass.add(this.navMenuList,addClass);
+            domStyle.set(this.navCtrBtn,'transform',transform);
+            domAttr.set(this.navCtrBtn,'title',title);
         }
     });
 });

@@ -1,4 +1,4 @@
-html, body, .viewDiv, .mainContainer,.map {
+html, body, .viewDiv,#viewDiv, .mainContainer,.map {
     padding: 0;
     margin: 0;
     width: 100%;

@@ -7,8 +7,8 @@
     width: 350px;
     position: absolute;
     z-index: 999;
-    top: 5%;
-    right: 5%;
+    top: 2%;
+    left: 1%;
 }
 
 .searchContainer {
@@ -35,7 +35,7 @@
 
 .searchText {
     width: 13%;
-    background-color: #7cb1f1;
+    background-color: #f17878;
     color: #fff;
     font-size: 15px;
     text-align: center;

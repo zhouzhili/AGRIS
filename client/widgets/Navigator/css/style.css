@@ -1,0 +1,65 @@
+.navWrap{
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    z-index: 999;
+}
+.navMenuContainer {
+    font-family: Arial, 微软雅黑, "Hiragino Sans GB", 新宋体, sans-serif;
+    width: 121px;
+    float: left;
+}
+
+.navCtr {
+    background-image: url(../images/leftarrow.png);
+    height: 32px;
+    width: 34px;
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+    transform: rotate(0deg);
+}
+
+.navMenu {
+    height: 32px;
+    background-color: #00c0f0;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+
+    /*添加菜单栏后需要修改长度*/
+    display: none;
+
+    /*加上向右浮动后，实现从右向左收起和展开*/
+    /*
+    float: right;
+    animation: myFirst 2s;
+    */
+}
+
+.navMenuItem {
+    display: block;
+    float: left;
+    height: 30px;
+    padding: 6px;
+}
+
+.navMenuItem > div {
+    padding-left: 10px;
+}
+
+.borderLeft {
+    border-left: 1px solid #fff;
+}
+
+/*
+@keyframes myFirst {
+    0% {
+        width: 121px;
+    }
+    100% {
+        width: 0;
+    }
+}
+*/

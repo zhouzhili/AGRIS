@@ -6,8 +6,11 @@ define([
     "dojo/_base/declare",
     "dojo/_base/lang",
     'widgets/Map/Map',
-    'widgets/SearchData/SearchData'
-], function (declare, lang,Map, SearchData) {
+    'widgets/SearchData/SearchData',
+    'widgets/ZoomBar/ZoomBar',
+    'widgets/Compass/compass',
+    'widgets/Navigator/navigator'
+], function (declare, lang,Map, SearchData,zoomBar,compass,navigator) {
     window.Global={};
     return declare(null,{
 
@@ -19,11 +22,25 @@ define([
             var map=new Map();
             map.placeAt(dojo.body());
             map.startup();
-            //地图视图
+
+            //地图视图存储到全局变量中
             window.Global.view=map.getView();
+
             //查询面板
             var searchDataPanel=new SearchData();
             searchDataPanel.placeAt(dojo.body());
+
+            //缩放按钮
+            var zoom=new zoomBar();
+            zoom.placeAt(dojo.body());
+
+            //指南针组件
+            var myCompass=new compass();
+            myCompass.placeAt(dojo.body());
+
+            //导航菜单栏组件
+            var myNavigator=new navigator();
+            myNavigator.placeAt(dojo.body());
         }
     });
 });

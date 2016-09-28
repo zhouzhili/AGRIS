@@ -40,7 +40,7 @@ define([
 
         postCreate: function () {
             this.init();
-            this.addEvent();
+            this.bindEvent();
         },
 
         /*
@@ -53,7 +53,7 @@ define([
         /*
          初始化事件
          */
-        addEvent: function () {
+        bindEvent: function () {
             on(this.imgBtn, 'click', lang.hitch(this, this.imgBtnClick));
             on(this.cityList, 'change', lang.hitch(this, this.cityListChange));
             on(this.countryList, 'change', lang.hitch(this, this.countryListChange));
@@ -70,7 +70,10 @@ define([
             var open="../widgets/SearchData/images/open.png";
             var currentSrc = $("#dropDownIcon").attr("src");
             var src=(currentSrc===open)?close:open;
+            var title=(currentSrc===open)?"折叠":"展开";
             $("#dropDownIcon").attr("src",src);
+            $("#imgBtn").attr('title',title);
+
         },
 
         /*
@@ -79,6 +82,7 @@ define([
         cityListChange: function () {
             //获取选择城市
             var selectedCity = this.cityList.options[this.cityList.selectedIndex].value;
+            this.input.value=selectedCity;
             //清除之前的边界
             Global.view.map.remove(this.mapImageLayer);
             Global.view.graphics.items = null;
@@ -93,6 +97,7 @@ define([
          */
         countryListChange: function () {
             var selectedCountry = this.countryList.options[this.countryList.selectedIndex].value;
+            this.input.value=selectedCountry;
             //清除之前的边界
             Global.view.map.remove(this.mapImageLayer);
             Global.view.graphics.items = null;
@@ -146,27 +151,6 @@ define([
             }
             countrySelect.innerHTML = html;
         },
-
-        /*
-         将查询到的结果(graphic[]集合)根据给定的符号，加载到视图中
-         在查询回调then中，this指向的是window，无法调用次方法，如何解决?
-         addQueryResultToView: function (results,symbol) {
-         var features = results.features;
-         if (features.length > 0) {
-         //给每个要素添加符号
-         var graphics = features.map(function (feature) {
-         feature.symbol = symbol;
-         return feature;
-         });
-
-         //添加新选择的,并将试图转到新的视图
-         window.Global.view.graphics.addMany(graphics);
-         window.Global.view.goTo({
-         target: graphics
-         });
-         }
-         },
-         */
 
         /*
          根据选择的城市，显示城市范围，并定位到该城市

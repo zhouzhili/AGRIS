@@ -8,13 +8,13 @@ define([
     "esri/Basemap",
     'widgets/BaseWidget/_baseWidget',
     "app/layers",
-    'dojo/text!./Templates/template.html'
+    'dojo/text!./templates/template.html'
 ], function (declare,Map, SceneView, Basemap, _baseWidget, layers,template) {
     return declare([_baseWidget],{
         templateString:template,
-
+        view:null,
         startup: function () {
-            this.view=this.initMap();
+            this.initMap();
             this.inherited(arguments);
         },
 
@@ -41,7 +41,7 @@ define([
                 ground: "world-elevation"
             });
 
-            var view = new SceneView({
+            this.view = new SceneView({
                 container: this.viewDiv,
                 map: map,
                 center: [113.32, 29.84],
@@ -49,7 +49,10 @@ define([
                 tile:0,
                 heading:0
             });
-            return view;
+
+            //移除默认缩放按钮,指南针
+            this.view.ui.remove("zoom");
+            this.view.ui.remove('compass');
         },
 
         /*

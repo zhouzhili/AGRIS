@@ -3,13 +3,13 @@
  * 程序主入口
  */
 define([
-    'app/UIManager'
+  'app/UIManager'
 ], function (UIManager) {
-   return {
-       initApp: function () {
-           var uiManager=new UIManager();
-           uiManager.init();
-       }
-   };
+  return {
+    initApp: function () {
+      var uiManager = new UIManager();
+      uiManager.init();
+    }
+  };
 
 });
